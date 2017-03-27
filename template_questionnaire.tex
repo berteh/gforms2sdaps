@@ -1,0 +1,42 @@
+\documentclass[
+  % Babel language, also used to load translations
+  english,
+  % paper size, typically a4paper or letterpaper
+  %a4paper, 
+  %letterpaper,
+  % custom barcode at the center
+  %globalid=SDAPS,
+  % per sheet barcode at the bottom left
+  %print_questionnaire_id,
+  % twoside is the default, and requires document to be printed and scanned in duplex
+  %oneside,
+  % Good options to get a better feel for the final look.
+  pagemark,
+  stamp]{sdaps}
+\usepackage[utf8]{inputenc}
+% enable to get 2 columns content
+%\usepackage{multicol}
+
+\author{The Author}
+\title{The Title}
+
+\begin{document}
+  % If you don't like the default text at the beginning of each questionnaire
+  % you can remove it with the optional [noinfo] parameter for the environment 
+  \begin{questionnaire}
+    % predefined "info" style to hilight some text.
+    \begin{info}
+      Some information here. Nothing special, just adds a line above/below.
+    \end{info}
+
+    % Use \addinfo to add metadata (which is printed on the report later on)
+    \addinfo{Date}{10.03.2013}
+	
+	% enable to get 2 columns content
+	%\begin{multicols}{2}
+
+	%loop here
+
+  \end{questionnaire}
+\end{document}
+

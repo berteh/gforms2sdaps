@@ -1,0 +1,45 @@
+
+\documentclass[
+  % Babel language, also used to load translations
+  english,
+  % paper size, typically a4paper or letterpaper
+  %a4paper, 
+  %letterpaper,
+  % custom barcode at the center
+  %globalid=SDAPS,  %
+  % per sheet barcode at the bottom left
+  %print_questionnaire_id,
+  % twoside is the default, and requires document to be printed and scanned in duplex
+  %oneside,
+  % Good options to get a better feel for the final look.
+  pagemark,
+  stamp]{sdaps}
+\usepackage[utf8]{inputenc}
+% enable to get 2 columns content
+%\usepackage{multicol}
+
+\author{SDAPS - easy paper enquiries}
+\title{titre de l'enquête}
+
+egin{document}
+  % If you don't like the default text at the beginning of each questionnaire
+  % you can remove it with the optional [noinfo] parameter for the environment 
+  egin{questionnaire}
+    % predefined "info" style to hilight some text.
+    egin{info}
+      Some information here. Nothing special, just adds a line above/below.
+    \end{info}
+
+    % Use ddinfo to add metadata (which is printed on the report later on)
+    ddinfo{Date}{2017-03-24}
+	
+	% enable to get 2 columns content
+	%egin{multicols}{2}
+
+    $questions
+
+    %\end{multicols}
+
+  \end{questionnaire}
+\end{document}
+

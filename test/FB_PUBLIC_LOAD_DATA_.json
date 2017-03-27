@@ -1,0 +1,26 @@
+[
+null,[
+"Description de l'enquête",
+[[761139843,"Question à choix multiples","et la description de cette question",2,
+	[[2121069139,[["Option n° 1",null,null,null,0],["Option 2",null,null,null,0],["Option 3",null,null,null,0]],0,null,null,null,null,null,0]]]
+
+,[1664089543,"un titre intermédiaire","Texte accompagnant le titre intermédiaire",6]
+,[921838922,"cases à cocher",null,4,
+	[[1139675077,[["Option n° 1",null,null,null,0],["Option 2",null,null,null,0],["Option 3",null,null,null,0]],0,null,null,null,null,null,0]]]
+,[1971909828,"échelle linéaire","et la description de cette question à échelle",5,[[2051567173,[["1"],["2"],["3"],["4"],["5"]],0,["permière étiquette","dernière étiquette"]]]]
+
+,[9177075,"Titre de la seconde section","et sa description",8]
+,[1369432126,"Question pour texte court",null,0,[[185719365,null,0]]]
+,[1437296616,null,"Petit texte intermédiaire sans titre",6]
+,[933432867,"Question en texte long",null,1,[[50442783,null,0]]]
+,[721385976,"Grille à choix multiple","et la description de la grille à choix multiples",7,
+	[[742084689,[["colonne 1"],["colonne 2"],["colonne 3"]],0,["Ligne 1"],null,null,null,null,null,null,null,[0]]
+	,[1021915831,[["colonne 1"],["colonne 2"],["colonne 3"]],0,["Ligne 2"],null,null,null,null,null,null,null,[0]]]]
+]
+,null,null,null,null,null,null,"titre de l'enquête",30,
+null,null,null,null,null,[2]]
+,"/forms","Formulaire sans titre","",null,[[1,"https://docs.google.com/[domain]spreadsheet/ccc?key\u003d[key]\u0026usp\u003d[usp]#gid\u003dform"]
+,[2,"//www.google.com/fusiontables/data?docid\u003d[key]"]
+,[3,"https://docs.google.com/[domain]spreadsheets/d/[key]?usp\u003d[usp]#gid\u003d[grid]"]
+]
+,"0","",0,0,"","",0,"e/1FAIpQLScgz0c40O8Dn0q0Zc6A6_upJrNwxt0t1gvLGZ9XhlbKi6-nsw"]
