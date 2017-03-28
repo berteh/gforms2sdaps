@@ -78,11 +78,15 @@ class TEMPLATES:
     SHORTTEXT = "\n\n\\textbox{1.5cm}{$title}\n$description\n"
     LONGTEXT = "\n\n\\textbox{3cm}{$title}\n$description\n"
     MULTICHOICE = TODO
+    DROPLIST = TODO
     CHECKBOXES = TODO
     SCALE = TODO
     SECTION = "\n\section{$title}\n$description\n"
     MATRIX = TODO
     NEWPAGE = "\n\\newpage\n\section{$title}\n$description\n"
+    PHOTO = TODO
+    VIDEO = TODO
+    
 
 #defaults
 outDir = os.getcwd()
@@ -90,11 +94,14 @@ question_types = {
     0:TEMPLATES.SHORTTEXT, 
     1:TEMPLATES.LONGTEXT, 
     2:TEMPLATES.MULTICHOICE, 
+    3:TEMPLATES.DROPLIST, 
     4:TEMPLATES.CHECKBOXES,
     5:TEMPLATES.SCALE, 
     6:TEMPLATES.SECTION,
     7:TEMPLATES.MATRIX,
-    8:TEMPLATES.NEWPAGE}
+    8:TEMPLATES.NEWPAGE,
+    11:TEMPLATES.PHOTO,
+    12:TEMPLATES.VIDEO}
 
 #parse options
 parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
