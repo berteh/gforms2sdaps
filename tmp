@@ -1,45 +1,126 @@
-
-\documentclass[
+﻿\documentclass[
   % Babel language, also used to load translations
   english,
   % paper size, typically a4paper or letterpaper
-  %a4paper, 
+  a4paper, 
   %letterpaper,
   % custom barcode at the center
-  %globalid=SDAPS,  %
+  %globalid=SDAPSGFORMS,
   % per sheet barcode at the bottom left
   %print_questionnaire_id,
   % twoside is the default, and requires document to be printed and scanned in duplex
-  %oneside,
+  oneside,
   % Good options to get a better feel for the final look.
   pagemark,
   stamp]{sdaps}
 \usepackage[utf8]{inputenc}
 % enable to get 2 columns content
 %\usepackage{multicol}
+\DeclareUnicodeCharacter{B0}{\deg}
+
 
 \author{SDAPS - easy paper enquiries}
 \title{titre de l'enquête}
 
-egin{document}
+\begin{document}
   % If you don't like the default text at the beginning of each questionnaire
   % you can remove it with the optional [noinfo] parameter for the environment 
-  egin{questionnaire}
+
+  \begin{questionnaire}
     % predefined "info" style to hilight some text.
-    egin{info}
-      Some information here. Nothing special, just adds a line above/below.
+    \begin{info}
+      Description de l'enquête
     \end{info}
 
-    % Use ddinfo to add metadata (which is printed on the report later on)
-    ddinfo{Date}{2017-03-24}
-	
-	% enable to get 2 columns content
-	%egin{multicols}{2}
+    % Use \addinfo to add metadata (which is printed on the report later on)
+    \addinfo{Author}{SDAPS - easy paper enquiries}
+    \addinfo{Date}{2017-05-30}
+    
+    % enable to get 2 columns content
+    %\begin{multicols}{2}
 
-    $questions
+    
+\begin{choicequestion}[3]{Question à choix multiples}
+      \choiceitem{Option n\deg 1}
+      \choiceitem{Option 2}
+      \choiceitem{Option 3}
+      \choiceitemtext{1.2cm}{2}{Other:}
+\end{choicequestion}
 
-    %\end{multicols}
 
-  \end{questionnaire}
+\section{un titre intermédiaire}
+Texte accompagnant le titre intermédiaire
+
+
+\begin{choicequestion}[3]{cases à cocher}
+      \choiceitem{Option n\deg 1}
+      \choiceitem{Option 2}
+      \choiceitem{Option 3}
+      \choiceitemtext{1.2cm}{2}{Other:}
+\end{choicequestion}
+
+
+TODO échelle linéaire section is \emph{not supported yet}.
+
+
+
+\newpage
+\section{Titre de la seconde section}
+et sa description
+
+
+\textbox{1.5cm}{Question pour texte court}
+
+
+
+
+\section{}
+Petit texte intermédiaire sans titre
+
+
+\textbox{3cm}{Question en texte long}
+
+
+
+
+TODO Grille à choix multiple section is \emph{not supported yet}.
+
+
+
+\newpage
+\section{Page suivante}
+saut forcé à la page suivante, qui liste une série de questions de GoogleForms pas encore supportées par SDAPS.
+
+
+
+TODO choisissez une date section is \emph{not supported yet}.
+
+
+
+TODO choisissez une heure section is \emph{not supported yet}.
+
+
+\begin{choicequestion}[3]{Liste déroulante}
+      \choiceitem{Option n\deg 1}
+      \choiceitem{option 2}
+      \choiceitem{Option 3}
+\end{choicequestion}
+
+
+TODO Vidéo sur youtube section is \emph{not supported yet}.
+
+
+
+TODO Photo section is \emph{not supported yet}.
+
+
+
+\section{Merci}
+au plaisir de vous revoir ici.
+
+%\end{multicols}
+
+\end{questionnaire}
+
 \end{document}
 

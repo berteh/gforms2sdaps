@@ -17,35 +17,36 @@ from pprint import pprint
 from string import Template
 
 class CONST:
-    """ Constants for general usage
+    """ Your default settings, for general usage
     """
     EMPTY = ''
     AUTHOR = "SDAPS - easy paper enquiries" 
     LANG = "english"
+    OTHER ="Other:"
 
 class TEMPLATES:
     """LaTeX templates with placeholders
        some \ characters need to be double to be escaped if they otherwise correspond to a Python character code.
     """
     DOCUMENT = """
-\documentclass[
+\\documentclass[
   % Babel language, also used to load translations
   $language,
   % paper size, typically a4paper or letterpaper
-  %a4paper, 
+  a4paper, 
   %letterpaper,
   % custom barcode at the center
-  %globalid=SDAPS,  %
+  %globalid=SDAPSGFORMS,
   % per sheet barcode at the bottom left
   %print_questionnaire_id,
   % twoside is the default, and requires document to be printed and scanned in duplex
-  %oneside,
+  oneside,
   % Good options to get a better feel for the final look.
   pagemark,
   stamp]{sdaps}
-\usepackage[utf8]{inputenc}
+\\usepackage[utf8]{inputenc}
 % enable to get 2 columns content
-%\usepackage{multicol}
+%\\usepackage{multicol}
 
 \\author{$author}
 \\title{$title}
@@ -53,55 +54,89 @@ class TEMPLATES:
 \\begin{document}
   % If you don't like the default text at the beginning of each questionnaire
   % you can remove it with the optional [noinfo] parameter for the environment 
+
   \\begin{questionnaire}
     % predefined "info" style to hilight some text.
     \\begin{info}
       $description
-    \end{info}
+    \\end{info}
 
     % Use \\addinfo to add metadata (which is printed on the report later on)
+    \\addinfo{Author}{$author}
     \\addinfo{Date}{$date}
-	
-	% enable to get 2 columns content
-	%\\begin{multicols}{2}
+    
+    % enable to get 2 columns content
+    %\\begin{multicols}{2}
 
     $questions
 
-    %\end{multicols}
+    %\\end{multicols}
 
-  \end{questionnaire}
-\end{document}
+  \\end{questionnaire}
+\\end{document}
 """
         
-    TODO="\n\nTODO $title section is not supported yet.\n"
+    TODO="\n\nTODO $title section is \\emph{not supported yet}.\n\n"
 
-    SHORTTEXT = "\n\n\\textbox{1.5cm}{$title}\n$description\n"
-    LONGTEXT = "\n\n\\textbox{3cm}{$title}\n$description\n"
-    MULTICHOICE = TODO
-    DROPLIST = TODO
-    CHECKBOXES = TODO
+    SHORTTEXT = """
+\\textbox{1.5cm}{$title}
+$description
+
+"""
+    LONGTEXT = """
+\\textbox{3cm}{$title}
+$description
+
+"""
+    MULTICHOICE = """
+\\begin{choicequestion}[3]{$title}$items$other
+\\end{choicequestion}
+"""
+    MULTICHOICE_ITEM ="\n      \choiceitem{$text}"
+    MULTICHOICE_OTHER = "\n      \choiceitemtext{1.2cm}{2}{$text}"
+    LIST = MULTICHOICE
+    CHECKBOXES = MULTICHOICE
     SCALE = TODO
-    SECTION = "\n\section{$title}\n$description\n"
+    SCALE_ITEM = TODO
+    SECTION = """
+
+\\section{$title}
+$description
+
+"""
     MATRIX = TODO
-    NEWPAGE = "\n\\newpage\n\section{$title}\n$description\n"
+    MATRIX_ITEM = TODO
+    NEWPAGE = """
+
+\\newpage
+\\section{$title}
+$description
+
+"""
+    DATE = TODO
+    TIME = TODO
     PHOTO = TODO
     VIDEO = TODO
-    
 
 #defaults
 outDir = os.getcwd()
 question_types = {
-    0:TEMPLATES.SHORTTEXT, 
-    1:TEMPLATES.LONGTEXT, 
-    2:TEMPLATES.MULTICHOICE, 
-    3:TEMPLATES.DROPLIST, 
-    4:TEMPLATES.CHECKBOXES,
-    5:TEMPLATES.SCALE, 
-    6:TEMPLATES.SECTION,
-    7:TEMPLATES.MATRIX,
-    8:TEMPLATES.NEWPAGE,
-    11:TEMPLATES.PHOTO,
-    12:TEMPLATES.VIDEO}
+    0:[TEMPLATES.SHORTTEXT], 
+    1:[TEMPLATES.LONGTEXT], 
+    2:[TEMPLATES.MULTICHOICE, TEMPLATES.MULTICHOICE_ITEM, TEMPLATES.MULTICHOICE_OTHER],
+    3:[TEMPLATES.LIST, TEMPLATES.MULTICHOICE_ITEM, TEMPLATES.MULTICHOICE_OTHER],
+    4:[TEMPLATES.CHECKBOXES, TEMPLATES.MULTICHOICE_ITEM, TEMPLATES.MULTICHOICE_OTHER],
+    5:[TEMPLATES.SCALE, TEMPLATES.SCALE_ITEM], 
+    6:[TEMPLATES.SECTION],
+    7:[TEMPLATES.MATRIX, TEMPLATES.MATRIX_ITEM],
+    8:[TEMPLATES.NEWPAGE],
+    9:[TEMPLATES.DATE],
+    10:[TEMPLATES.TIME],
+    11:[TEMPLATES.PHOTO],
+    12:[TEMPLATES.VIDEO]}
+
+
+
 
 #parse options
 parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -121,7 +156,7 @@ parser.add_argument('-o', '--outName', default=None,
 parser.add_argument('-a', '--author', default=CONST.AUTHOR,
     help='author of the questionnaire, defaults to "SDAPS"')
 parser.add_argument('-d', '--date', default=datetime.date.today(),
-    help='author of the questionnaire, defaults to "SDAPS"')
+    help='date of the questionnaire, defaults to today')
 parser.add_argument('-l', '--language', default=CONST.LANG,
     help='language of the questionnaire, in LaTeX format, default is english')
 #parser.add_argument('-i', '--image', default=CONST.SDPASLOGO
@@ -148,11 +183,26 @@ def apply_template(template, subs):
     return(s.safe_substitute(subs))
 
 def convert_question(data):
+    """ data is [title|None, description|None, question_type, ([option1, option2,... ]) ]
+    """
+    templates = question_types[data[3]]
     subs = {'title': ife((data[1] is None), '', data[1]), 
             'description': ife((data[2] is None), '', data[2]) }
-    if(len(data)>4):
-        subs['options'] = data[4]
-    return(apply_template(question_types[data[3]], subs))
+    if(len(templates)>1 and len(data)>4):
+        #print(data[4][0][1])
+        data_items = data[4][0][1]
+        #check for other
+        if(len(templates)>2 and data_items[-1][-1]==1):
+            subs['other']= apply_template(templates[2], {'text':CONST.OTHER})
+            data_items = data_items [:-1]
+        else:
+            subs['other']=''
+        #handle items
+        items_texts = []
+        for item in data_items:
+            items_texts.append(apply_template(templates[1], {'text':item[0]}))
+        subs['items'] = ''.join(items_texts)
+    return(apply_template(templates[0], subs))
 
 #run
 for infile in args.infiles:

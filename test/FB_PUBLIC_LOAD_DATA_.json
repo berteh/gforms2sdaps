@@ -2,11 +2,15 @@
 null,[
 "Description de l'enquête",
 [[761139843,"Question à choix multiples","et la description de cette question",2,
-	[[2121069139,[["Option n° 1",null,null,null,0],["Option 2",null,null,null,0],["Option 3",null,null,null,0]],0,null,null,null,null,null,0]]]
+	[[2121069139,[["Option n° 1",null,null,null,0],["Option 2",null,null,null,0],["Option 3",null,null,null,0],["",null,null,null,1]],
+        0,null,null,null,null,null,0]]]
 
 ,[1664089543,"un titre intermédiaire","Texte accompagnant le titre intermédiaire",6]
 ,[921838922,"cases à cocher",null,4,
-	[[1139675077,[["Option n° 1",null,null,null,0],["Option 2",null,null,null,0],["Option 3",null,null,null,0]],0,null,null,null,null,null,0]]]
+	[[1139675077,[["Option n° 1",null,null,null,0],["Option 2",null,null,null,0],["Option 3",null,null,null,0],["",null,null,null,1]],
+        0,null,null,null,null,null,0]]]
+
+
 ,[1971909828,"échelle linéaire","et la description de cette question à échelle",5,[[2051567173,[["1"],["2"],["3"],["4"],["5"]],0,["permière étiquette","dernière étiquette"]]]]
 
 ,[9177075,"Titre de la seconde section","et sa description",8]
@@ -16,6 +20,21 @@ null,[
 ,[721385976,"Grille à choix multiple","et la description de la grille à choix multiples",7,
 	[[742084689,[["colonne 1"],["colonne 2"],["colonne 3"]],0,["Ligne 1"],null,null,null,null,null,null,null,[0]]
 	,[1021915831,[["colonne 1"],["colonne 2"],["colonne 3"]],0,["Ligne 2"],null,null,null,null,null,null,null,[0]]]]
+
+
+
+
+,[2018844675,"Page suivante","saut forcé à la page suivante, qui liste une série de questions de GoogleForms pas encore supportées par SDAPS.",8]
+,[2119231824,"choisissez une date",null,9,[[1390877245,null,0,null,null,null,null,[0,1]]]]
+,[2017489684,"choisissez une heure","et il est toujours possible d'ajouter une description sous le titre... pour préciser la question.",10,
+    [[1521815168,null,0,null,null,null,[0]]]]
+,[662770402,"Liste déroulante","Pourrait être affiché comme une question de cases à choix multiples.",3,
+    [[2040507855,[["Option n° 1",null,null,null,0],["option 2",null,null,null,0],["Option 3",null,null,null,0]],
+        0,null,null,null,null,null,0]]]
+,[1480324792,"Vidéo sur youtube","et un sous-titre",12,null,null,[null,1,[320,180,0],"qJhvjqMSYmk"]]
+,[240800368,"Photo","et le texte de survol de la photo",11,null,null,["1YAbu19BCh2E6Spc9Zo8lCcui2IQGNW68Irtr-tNHgI_O4g",0,[2048,1360,0]]]
+,[568881314,"Merci","au plaisir de vous revoir ici.",6]
+
 ]
 ,null,null,null,null,null,null,"titre de l'enquête",30,
 null,null,null,null,null,[2]]
